@@ -16,7 +16,7 @@ export function validateFormData(data: Partial<FormData>): ValidationResult {
   } catch (error) {
     if (error instanceof ZodError) {
       const errors: Record<string, string> = {};
-      error.errors.forEach((err) => {
+      error.issues.forEach((err) => {
         const path = err.path.join('.');
         errors[path] = err.message;
       });
@@ -44,7 +44,7 @@ export function validateField(
     return null;
   } catch (error) {
     if (error instanceof ZodError) {
-      const fieldError = error.errors.find(
+      const fieldError = error.issues.find(
         (err) => err.path[0] === field
       );
       return fieldError?.message || null;
