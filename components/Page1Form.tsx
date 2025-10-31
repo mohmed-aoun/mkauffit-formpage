@@ -82,7 +82,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
 
         <TextInput
           label="Height"
-          placeholder="e.g., 5'10\" or 178cm"
+          placeholder={'e.g., 5\'10" or 178cm'}
           value={data.height || ''}
           onChange={(e) => onChange('height', e.target.value)}
           onBlur={() => onBlur('height')}
