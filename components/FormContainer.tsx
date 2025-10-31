@@ -8,7 +8,7 @@ import { Page4Form } from './Page4Form';
 import { ThankYouPage } from './ThankYouPage';
 import { useFormState } from '@/hooks/useFormState';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
-import { validatePage, FormSchema } from '@/lib/formValidation';
+import { validatePage } from '@/lib/formValidation';
 import { FormData } from '@/types/form';
 
 export const FormContainer: React.FC = () => {
