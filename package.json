@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/mohmed-aoun/mkauffit-formpage/issues"
   },
-  "homepage": "https://github.com/mohmed-aoun/mkauffit-formpage#readme"
+  "homepage": "https://github.com/mohmed-aoun/mkauffit-formpage#readme",
+  "dependencies": {
+    "next": "^16.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
 }
