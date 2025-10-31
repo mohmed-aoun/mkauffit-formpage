@@ -1,0 +1,21 @@
+{
+  "name": "mkauffit-formpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://x-access-token:ghs_y7FPncEBwAWH0GCSMwvkQ7AuBpnViF1zYGpZ@github.com/mohmed-aoun/mkauffit-formpage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mohmed-aoun/mkauffit-formpage/issues"
+  },
+  "homepage": "https://github.com/mohmed-aoun/mkauffit-formpage#readme"
+}
