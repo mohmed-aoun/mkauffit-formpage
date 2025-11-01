@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 * {
   margin: 0;
@@ -18,7 +16,6 @@ body {
   line-height: 1.5;
 }
 
-/* Form Input Styles */
 input[type='text'],
 input[type='email'],
 input[type='number'],
@@ -42,23 +39,11 @@ textarea {
   font-family: inherit;
 }
 
-/* Slider Styles */
-[role='slider'] {
-  @apply cursor-pointer;
-}
-
-/* Radio Button Styles */
-[role='radio'] {
-  @apply cursor-pointer;
-}
-
-/* Button Styles */
 button {
   @apply font-medium text-sm;
   transition: all 0.2s ease;
 }
 
-/* Remove default focus outline in favor of our custom ring */
 button:focus,
 input:focus,
 textarea:focus,
@@ -66,7 +51,6 @@ select:focus {
   outline: none;
 }
 
-/* Link Styles */
 a {
   @apply text-blue-600 hover:text-blue-800 cursor-pointer;
 }
