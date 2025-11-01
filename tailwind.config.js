@@ -13,6 +13,14 @@ export default {
         'brand-gray-text': '#6b7280',
         'brand-text': '#1f2937',
       },
+      fontSize: {
+        xs: '16px',
+        sm: '18px',
+        base: '20px',
+        lg: '22px',
+        xl: '26px',
+        '2xl': '32px',
+      },
     },
   },
 };
