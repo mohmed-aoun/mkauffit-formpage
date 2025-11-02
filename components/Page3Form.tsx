@@ -136,7 +136,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: '8', label: '8 hours' },
           { value: '9plus', label: '9+ hours' },
         ]}
-        value={data.sleepHours || ''}
+        value={data.sleepHours || 5}
         onChange={(value) => onChange('sleepHours', value)}
         error={errors.sleepHours}
         required
