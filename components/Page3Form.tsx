@@ -11,9 +11,9 @@ import { FormData } from '@/types/form';
 
 interface Page3FormProps {
   data: Partial<FormData>;
-  errors: Record<string, string>;
-  onChange: (field: string, value: any) => void;
-  onBlur: (field: string) => void;
+  errors: Partial<Record<keyof FormData, string>>;
+  onChange: (field: keyof FormData, value: any) => void;
+  onBlur: (field: keyof FormData) => void;
 }
 
 export const Page3Form: React.FC<Page3FormProps> = ({
@@ -33,8 +33,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
       <TextInput
         label="Do you currently track your daily steps? If yes, how many on average?"
         placeholder="e.g., 8000 or N/A if not tracked"
-        value={data.stepsTracking || ''}
-        onChange={(e) => onChange('stepsTracking', e.target.value)}
+        value={data.stepsTracking ?? ''}
+        onChange={(value) => onChange('stepsTracking', value)}
         onBlur={() => onBlur('stepsTracking')}
         error={errors.stepsTracking}
         required
@@ -43,8 +43,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
       <TextArea
         label="Any current or past injuries / pain / medical conditions I should know about?"
         placeholder="Describe any injuries, conditions, or limitations..."
-        value={data.medicalConditions || ''}
-        onChange={(e) => onChange('medicalConditions', e.target.value)}
+        value={data.medicalConditions ?? ''}
+        onChange={(value) => onChange('medicalConditions', value)}
         onBlur={() => onBlur('medicalConditions')}
         error={errors.medicalConditions}
         required
@@ -54,8 +54,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
       <TextArea
         label="Share what a typical day of eating looks like for you"
         placeholder="Describe meals, snacks, drinks, timing, etc."
-        value={data.typicalEating || ''}
-        onChange={(e) => onChange('typicalEating', e.target.value)}
+        value={data.typicalEating ?? ''}
+        onChange={(value) => onChange('typicalEating', value)}
         onBlur={() => onBlur('typicalEating')}
         error={errors.typicalEating}
         required
@@ -69,7 +69,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: 'no', label: 'No' },
           { value: 'maybe', label: 'Maybe' },
         ]}
-        value={data.openToTrackingFood || ''}
+        value={data.openToTrackingFood ?? ''}
         onChange={(value) => onChange('openToTrackingFood', value)}
         error={errors.openToTrackingFood}
         required
@@ -82,7 +82,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: 'no', label: 'No' },
           { value: 'sometimes', label: 'Sometimes' },
         ]}
-        value={data.currentlyTrackingFood || ''}
+        value={data.currentlyTrackingFood ?? ''}
         onChange={(value) => onChange('currentlyTrackingFood', value)}
         error={errors.currentlyTrackingFood}
         required
@@ -91,8 +91,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
       <TextArea
         label="Any food preferences, dislikes, or dietary needs I should know about?"
         placeholder="Allergies, vegetarian, vegan, restrictions, preferences, etc."
-        value={data.dietaryNeeds || ''}
-        onChange={(e) => onChange('dietaryNeeds', e.target.value)}
+        value={data.dietaryNeeds ?? ''}
+        onChange={(value) => onChange('dietaryNeeds', value)}
         onBlur={() => onBlur('dietaryNeeds')}
         error={errors.dietaryNeeds}
         required
@@ -107,7 +107,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: '3-4x', label: '3–4×/week' },
           { value: '5plus', label: '5+×/week' },
         ]}
-        value={data.eatingOutFrequency || ''}
+        value={data.eatingOutFrequency ?? ''}
         onChange={(value) => onChange('eatingOutFrequency', value)}
         error={errors.eatingOutFrequency}
         required
@@ -121,7 +121,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: '2-3L', label: '2–3 L' },
           { value: '3plus', label: '3 L+' },
         ]}
-        value={data.waterIntake || ''}
+        value={data.waterIntake ?? ''}
         onChange={(value) => onChange('waterIntake', value)}
         error={errors.waterIntake}
         required
@@ -136,7 +136,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: '8', label: '8 hours' },
           { value: '9plus', label: '9+ hours' },
         ]}
-        value={data.sleepHours || '5'}
+        value={data.sleepHours ?? ''}
         onChange={(value) => onChange('sleepHours', value)}
         error={errors.sleepHours}
         required
@@ -149,16 +149,24 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: 'rested', label: 'I feel rested most days' },
           { value: 'inconsistent', label: "It's inconsistent" },
         ]}
-        value={data.sleepQuality || ''}
+        value={data.sleepQuality ?? ''}
         onChange={(value) => onChange('sleepQuality', value)}
         error={errors.sleepQuality}
         required
       />
 
+      {/* Fixed slider to prevent NaN issues */}
       <SliderInput
         label="What's your stress level like on a daily basis?"
-        value={data.stressLevel || 5}
-        onChange={(value) => onChange('stressLevel', value)}
+        value={
+          typeof data.stressLevel === 'number' && !isNaN(data.stressLevel)
+            ? data.stressLevel
+            : 5
+        }
+        onChange={(value) => {
+          const numericValue = Number(value);
+          onChange('stressLevel', isNaN(numericValue) ? 5 : numericValue);
+        }}
         min={1}
         max={10}
         minLabel="1 (Very low)"
@@ -174,7 +182,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
           { value: 'no', label: 'No' },
           { value: 'occasionally', label: 'Occasionally' },
         ]}
-        value={data.travelSchedule || ''}
+        value={data.travelSchedule ?? ''}
         onChange={(value) => onChange('travelSchedule', value)}
         error={errors.travelSchedule}
         required
