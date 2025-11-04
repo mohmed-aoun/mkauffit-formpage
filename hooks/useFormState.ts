@@ -25,31 +25,38 @@ export function useFormState(): UseFormStateReturn {
   const [currentPage, setCurrentPage] = useState(1);
   const [isDirty, setIsDirty] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from sessionStorage on mount
   useEffect(() => {
     loadFormData();
+
+    // Optional cleanup: remove any old localStorage data
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      console.warn('Could not remove old localStorage data:', error);
+    }
   }, []);
 
-  // Save to localStorage on data change
+  // Save to sessionStorage on data change
   useEffect(() => {
     if (isDirty) {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (error) {
-        console.error('Failed to save form data to localStorage:', error);
+        console.error('Failed to save form data to sessionStorage:', error);
       }
     }
   }, [data, isDirty]);
 
   const loadFormData = useCallback(() => {
     try {
-      const savedData = localStorage.getItem(STORAGE_KEY);
+      const savedData = sessionStorage.getItem(STORAGE_KEY);
       if (savedData) {
         setData(JSON.parse(savedData));
         setIsDirty(false);
       }
     } catch (error) {
-      console.error('Failed to load form data from localStorage:', error);
+      console.error('Failed to load form data from sessionStorage:', error);
     }
   }, []);
 
@@ -93,9 +100,9 @@ export function useFormState(): UseFormStateReturn {
     setCurrentPage(1);
     setIsDirty(false);
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(STORAGE_KEY);
     } catch (error) {
-      console.error('Failed to clear localStorage:', error);
+      console.error('Failed to clear sessionStorage:', error);
     }
   }, []);
 
