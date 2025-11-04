@@ -8,6 +8,7 @@ import {
   RadioGroup,
 } from './FormFields';
 import { FormData } from '@/types/form';
+import { safeNumber } from '@/utils/numberUtils';
 
 interface Page3FormProps {
   data: Partial<FormData>;
@@ -157,7 +158,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
 
       <SliderInput
         label="What's your stress level like on a daily basis?"
-        value={Number.isFinite(data.stressLevel) ? data.stressLevel : 5}
+        value={safeNumber(data.stressLevel, 5)}
         onChange={(value) => onChange('stressLevel', Number(value))}
         min={1}
         max={10}
