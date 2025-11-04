@@ -155,18 +155,10 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
       />
 
-      {/* Fixed slider to prevent NaN issues */}
       <SliderInput
         label="What's your stress level like on a daily basis?"
-        value={
-          typeof data.stressLevel === 'number' && !isNaN(data.stressLevel)
-            ? data.stressLevel
-            : 5
-        }
-        onChange={(value) => {
-          const numericValue = Number(value);
-          onChange('stressLevel', isNaN(numericValue) ? 5 : numericValue);
-        }}
+        value={Number.isFinite(data.stressLevel) ? data.stressLevel : 5}
+        onChange={(value) => onChange('stressLevel', Number(value))}
         min={1}
         max={10}
         minLabel="1 (Very low)"
@@ -174,6 +166,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stressLevel}
         required
       />
+
 
       <RadioGroup
         label="Do you travel often or live on an inconsistent schedule?"
