@@ -186,7 +186,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
 
         <SliderInput
           label="On a scale of 1–10, how committed are you to making a real change right now?"
-          value={data.commitmentLevel || 5}
+          value={data.commitmentLevel ?? 5}
           onChange={(value) => onChange('commitmentLevel', value)}
           min={1}
           max={10}
