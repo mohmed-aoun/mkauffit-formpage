@@ -9,6 +9,7 @@ import {
   SelectDropdown,
 } from './FormFields';
 import { FormData } from '@/types/form';
+import { safeNumber } from '@/utils/numberUtils';
 
 const TIMEZONE_OPTIONS = [
   { value: 'EST', label: 'EST (Eastern Standard Time)' },
@@ -186,7 +187,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
 
         <SliderInput
           label="On a scale of 1–10, how committed are you to making a real change right now?"
-          value={Number.isFinite(data.commitmentLevel) ? data.commitmentLevel : 5}
+          value={safeNumber(data.commitmentLevel, 5)}
           onChange={(value) => onChange('commitmentLevel', Number(value))}
           min={1}
           max={10}
