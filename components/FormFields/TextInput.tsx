@@ -1,19 +1,16 @@
-'use client';
-
 import React from 'react';
 
 interface TextInputProps {
   label: string;
   placeholder?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
+  onBlur?: () => void;
   error?: string;
   required?: boolean;
-  type?: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({
+const TextInput: React.FC<TextInputProps> = ({
   label,
   placeholder,
   value,
@@ -21,26 +18,30 @@ export const TextInput: React.FC<TextInputProps> = ({
   onBlur,
   error,
   required = false,
-  type = 'text',
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
+
   return (
-    <div className="mb-5">
-      <label className="block text-sm font-medium text-brand-text mb-2">
+    <div className="form-field">
+      <label className="block text-sm font-medium mb-1">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <input
-        type={type}
+        type="text"
+        className={`w-full border rounded-md px-3 py-2 focus:outline-none ${
+          error ? 'border-red-500' : 'border-gray-300 focus:ring-1 focus:ring-blue-500'
+        }`}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        value={value ?? ''}
+        onChange={handleChange}
         onBlur={onBlur}
-        className="w-full px-3 py-2 border border-brand-gray rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-brand-orange"
-        style={{
-          borderColor: error ? '#ef4444' : '#d1d5db',
-        }}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
     </div>
   );
 };
+
+export default TextInput;
