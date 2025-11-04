@@ -2,6 +2,7 @@
 
 import React from 'react';
 import * as SliderPrimitive from '@radix-ui/react-slider';
+import { safeNumber } from '@/utils/numberUtils';
 
 interface SliderInputProps {
   label: string;
@@ -26,6 +27,7 @@ export const SliderInput: React.FC<SliderInputProps> = ({
   error,
   required = false,
 }) => {
+  const safeVal = safeNumber(value, min ?? 1);
   return (
     <div className="mb-5">
       <label className="block text-sm font-medium text-brand-text mb-3">
@@ -45,15 +47,14 @@ export const SliderInput: React.FC<SliderInputProps> = ({
         </span>
       </div>
 
-      <SliderPrimitive.Root
-        min={min}
-        max={max}
-        step={1}
-        value={[Number.isFinite(value) ? value : min]} // ✅ fallback to min (or 5)
-        onValueChange={(vals) => onChange(Number(vals[0]))} // ✅ ensure numeric
-        className="relative flex items-center w-full h-5 touch-none select-none"
-      >
-
+        <SliderPrimitive.Root
+          min={min}
+          max={max}
+          step={1}
+          value={[safeVal]}
+          onValueChange={(vals) => onChange(safeNumber(vals?.[0], safeVal))} 
+          className="relative flex items-center w-full h-5 touch-none select-none"
+        >
         <SliderPrimitive.Track className="relative flex-grow h-2 bg-brand-gray rounded-full">
           <SliderPrimitive.Range
             className="absolute h-full bg-brand-orange rounded-full"
