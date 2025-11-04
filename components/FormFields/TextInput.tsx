@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 interface TextInputProps {
@@ -8,9 +9,10 @@ interface TextInputProps {
   onBlur?: () => void;
   error?: string;
   required?: boolean;
+  type?: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
+export const TextInput: React.FC<TextInputProps> = ({
   label,
   placeholder,
   value,
@@ -18,30 +20,24 @@ const TextInput: React.FC<TextInputProps> = ({
   onBlur,
   error,
   required = false,
+  type = 'text',
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
-  };
-
   return (
-    <div className="form-field">
-      <label className="block text-sm font-medium mb-1">
+    <div className="mb-5">
+      <label className="block text-sm font-medium text-brand-text mb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <input
-        type="text"
-        className={`w-full border rounded-md px-3 py-2 focus:outline-none ${
-          error ? 'border-red-500' : 'border-gray-300 focus:ring-1 focus:ring-blue-500'
-        }`}
+        type={type}
         placeholder={placeholder}
         value={value ?? ''}
-        onChange={handleChange}
+        onChange={(e) => onChange(e.target.value)} // ✅ fix
         onBlur={onBlur}
+        className="w-full px-3 py-2 border border-brand-gray rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-brand-orange"
+        style={{ borderColor: error ? '#ef4444' : '#d1d5db' }}
       />
-      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 };
-
-export default TextInput;
