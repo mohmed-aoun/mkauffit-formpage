@@ -8,6 +8,7 @@ import {
   CheckboxGroup,
 } from './FormFields';
 import { FormData } from '@/types/form';
+import { safeNumber } from '@/utils/numberUtils';
 
 interface Page2FormProps {
   data: Partial<FormData>;
@@ -103,7 +104,7 @@ export const Page2Form: React.FC<Page2FormProps> = ({
 
         <SliderInput
           label="How many days per week do you exercise?"
-          value={Number.isFinite(data.exerciseDaysPerWeek) ? data.exerciseDaysPerWeek : 0}
+          value={safeNumber(data.exerciseDaysPerWeek, 5)}
           onChange={(value) => onChange('exerciseDaysPerWeek', Number(value))}
           min={0}
           max={7}
