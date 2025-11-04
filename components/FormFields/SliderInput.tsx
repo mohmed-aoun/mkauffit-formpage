@@ -49,10 +49,11 @@ export const SliderInput: React.FC<SliderInputProps> = ({
         min={min}
         max={max}
         step={1}
-        value={[value]}
-        onValueChange={(vals) => onChange(vals[0])}
+        value={[Number.isFinite(value) ? value : min]} // ✅ fallback to min (or 5)
+        onValueChange={(vals) => onChange(Number(vals[0]))} // ✅ ensure numeric
         className="relative flex items-center w-full h-5 touch-none select-none"
       >
+
         <SliderPrimitive.Track className="relative flex-grow h-2 bg-brand-gray rounded-full">
           <SliderPrimitive.Range
             className="absolute h-full bg-brand-orange rounded-full"
