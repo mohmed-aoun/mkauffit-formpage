@@ -1,3 +1,4 @@
-export const safeNumber = (val: unknown, fallback = 5): number => {
-  return typeof val === 'number' && Number.isFinite(val) ? val : fallback;
+export const safeNumber = (val: any, fallback: number): number => {
+  const num = Number(val);
+  return isNaN(num) ? fallback : num;
 };
