@@ -70,6 +70,7 @@ export type Page3Data = z.infer<typeof HealthPhysicalSchema>;
 export type Page4Data = z.infer<typeof ProgramInterestSchema>;
 
 export const defaultFormValues: FormData = {
+  // --- Page 1 ---
   fullName: '',
   email: '',
   age: 0,
@@ -78,6 +79,7 @@ export const defaultFormValues: FormData = {
   timeZone: '',
   howDidYouHear: '',
 
+  // --- Page 2 ---
   mainGoal: '',
   goalMotivation: '',
   triedBefore: 'no',
@@ -94,6 +96,7 @@ export const defaultFormValues: FormData = {
   exerciseDaysPerWeek: 5,
   workoutTypes: '',
 
+  // --- Page 3 ---
   stepsTracking: '',
   medicalConditions: '',
   typicalEating: '',
@@ -107,6 +110,7 @@ export const defaultFormValues: FormData = {
   stressLevel: 5,
   travelSchedule: 'no',
 
+  // --- Page 4 ---
   coachingType: 'fitness',
   startTimeline: 'not-sure',
   additionalNotes: '',
