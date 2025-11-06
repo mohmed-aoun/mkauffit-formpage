@@ -159,7 +159,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
       <SliderInput
         label="What's your stress level like on a daily basis?"
         value={safeNumber(data.stressLevel, 5)}
-        onChange={(value) => onChange('stressLevel', Number(value))}
+        onChange={(value) => onChange('stressLevel', safeNumber(value, 5))}
         min={1}
         max={10}
         minLabel="1 (Very low)"
@@ -167,6 +167,7 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stressLevel}
         required
       />
+
 
 
       <RadioGroup
