@@ -20,7 +20,7 @@ interface UseFormStateReturn {
 }
 
 export function useFormState(): UseFormStateReturn {
-  const [data, setData] = useState<Partial<FormData>>({});
+  const [data, setData] = useState<Partial<FormData>>(defaultFormValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [isDirty, setIsDirty] = useState(false);
@@ -95,7 +95,7 @@ export function useFormState(): UseFormStateReturn {
   );
 
   const clearForm = useCallback(() => {
-    setData({});
+    setData({defaultFormValues});
     setErrors({});
     setCurrentPage(1);
     setIsDirty(false);
