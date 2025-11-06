@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { FormData } from '@/types/form';
+import { defaultFormValues } from '@/types/form';
 import { validateField } from '@/lib/formValidation';
 
 const STORAGE_KEY = 'health_coaching_form_data';
@@ -95,7 +96,7 @@ export function useFormState(): UseFormStateReturn {
   );
 
   const clearForm = useCallback(() => {
-    setData({defaultFormValues});
+    setData(defaultFormValues);
     setErrors({});
     setCurrentPage(1);
     setIsDirty(false);
