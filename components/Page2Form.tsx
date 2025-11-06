@@ -105,7 +105,7 @@ export const Page2Form: React.FC<Page2FormProps> = ({
         <SliderInput
           label="How many days per week do you exercise?"
           value={safeNumber(data.exerciseDaysPerWeek, 5)}
-          onChange={(value) => onChange('exerciseDaysPerWeek', Number(value))}
+          onChange={(value) => onChange('exerciseDaysPerWeek', safeNumber(value, 5))}
           min={0}
           max={7}
           minLabel="0 days"
@@ -113,6 +113,7 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.exerciseDaysPerWeek}
           required
         />
+
 
         <TextInput
           label="What type of workouts?"
