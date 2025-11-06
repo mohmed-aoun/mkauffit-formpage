@@ -68,3 +68,47 @@ export type Page1Data = z.infer<typeof PersonalInfoSchema> & z.infer<typeof Goal
 export type Page2Data = z.infer<typeof LifestyleSchema> & z.infer<typeof WorkoutDetailsSchema>;
 export type Page3Data = z.infer<typeof HealthPhysicalSchema>;
 export type Page4Data = z.infer<typeof ProgramInterestSchema>;
+
+export const defaultFormValues: FormData = {
+  fullName: '',
+  email: '',
+  age: 0,
+  height: '',
+  currentWeight: '',
+  timeZone: '',
+  howDidYouHear: '',
+
+  mainGoal: '',
+  goalMotivation: '',
+  triedBefore: 'no',
+  whatHeldYouBack: '',
+  feeling3to6Months: '',
+  commitmentLevel: 5,
+
+  throwsYouOffTrack: [],
+  throwsYouOffTrackOther: '',
+  supportStyle: 'step-by-step',
+  workingWithCoach: 'no',
+  gymAccess: 'none',
+
+  exerciseDaysPerWeek: 5,
+  workoutTypes: '',
+
+  stepsTracking: '',
+  medicalConditions: '',
+  typicalEating: '',
+  openToTrackingFood: 'no',
+  currentlyTrackingFood: 'no',
+  dietaryNeeds: '',
+  eatingOutFrequency: 'rarely',
+  waterIntake: '1-2L',
+  sleepHours: '7',
+  sleepQuality: 'rested',
+  stressLevel: 5,
+  travelSchedule: 'no',
+
+  coachingType: 'fitness',
+  startTimeline: 'not-sure',
+  additionalNotes: '',
+};
+
