@@ -34,7 +34,7 @@ export const WorkoutDetailsSchema = z.object({
 });
 
 export const HealthPhysicalSchema = z.object({
-  stepsTracking: z.string().max(100),
+  stepsTracking: z.string().max(100).optional(),
   medicalConditions: z.string().min(2, 'Please describe your medical considerations').max(1000),
   typicalEating: z.string().min(10, 'Please describe your typical eating patterns').max(1000),
   openToTrackingFood: z.enum(['yes', 'no', 'maybe']),
