@@ -132,7 +132,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="What is your #1 goal right now?"
           placeholder="e.g. Fat loss? Build muscle? Feel better overall? Prepare for an event?"
           value={data.mainGoal || ''}
-          onChange={(e) => onChange('mainGoal', e.target.value)}
+          onChange={(value) => onChange('mainGoal', value)}
           onBlur={() => onBlur('mainGoal')}
           error={errors.mainGoal}
           required
@@ -143,7 +143,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="Why do you want to achieve this goal? What would change in your life if you achieved it?"
           placeholder="Describe the impact..."
           value={data.goalMotivation || ''}
-          onChange={(e) => onChange('goalMotivation', e.target.value)}
+          onChange={(value) => onChange('goalMotivation', value)}
           onBlur={() => onBlur('goalMotivation')}
           error={errors.goalMotivation}
           required
@@ -167,7 +167,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="What got in the way/what held you back?"
           placeholder="What obstacles or challenges prevented progress?"
           value={data.whatHeldYouBack || ''}
-          onChange={(e) => onChange('whatHeldYouBack', e.target.value)}
+          onChange={(value) => onChange('whatHeldYouBack', value)}
           onBlur={() => onBlur('whatHeldYouBack')}
           error={errors.whatHeldYouBack}
           required
@@ -178,7 +178,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="If you don't make a change now, how will you feel 3–6 months from today?"
           placeholder="Describe the potential consequences..."
           value={data.feeling3to6Months || ''}
-          onChange={(e) => onChange('feeling3to6Months', e.target.value)}
+          onChange={(value) => onChange('feeling3to6Months', value)}
           onBlur={() => onBlur('feeling3to6Months')}
           error={errors.feeling3to6Months}
           required
