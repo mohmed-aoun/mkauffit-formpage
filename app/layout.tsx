@@ -14,8 +14,6 @@ export const metadata: Metadata = {
       { url: '/icons/apple-touch-icon.png', sizes: '180x180' },
     ],
     other: [
-      { rel: 'android-chrome', url: '/icons/android-chrome-192x192.png', sizes: '192x192' },
-      { rel: 'android-chrome', url: '/icons/android-chrome-512x512.png', sizes: '512x512' },
       { rel: 'manifest', url: '/icons/site.webmanifest' },
     ],
   },
