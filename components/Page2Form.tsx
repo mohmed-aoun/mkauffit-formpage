@@ -119,7 +119,7 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           label="What type of workouts?"
           placeholder="e.g., abs, cardio, strength training, yoga, etc."
           value={data.workoutTypes || ''}
-          onChange={(e) => onChange('workoutTypes', e.target.value)}
+          onChange={(value) => onChange('workoutTypes', value)}
           onBlur={() => onBlur('workoutTypes')}
           error={errors.workoutTypes}
           required
