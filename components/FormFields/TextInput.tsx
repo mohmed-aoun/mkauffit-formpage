@@ -6,8 +6,8 @@ interface TextInputProps {
   label: string;
   placeholder?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
+  onBlur?: () => void;
   error?: string;
   required?: boolean;
   type?: string;
@@ -33,7 +33,7 @@ export const TextInput: React.FC<TextInputProps> = ({
         type={type}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         className="w-full px-3 py-2 border border-brand-gray rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-brand-orange"
         style={{
