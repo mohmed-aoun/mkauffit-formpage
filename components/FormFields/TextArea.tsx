@@ -6,8 +6,8 @@ interface TextAreaProps {
   label: string;
   placeholder?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onChange: (value: string) => void;
+  onBlur?: () => void;
   error?: string;
   required?: boolean;
   rows?: number;
@@ -32,7 +32,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       <textarea
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         rows={rows}
         className="w-full px-3 py-2 border border-brand-gray rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-brand-orange resize-vertical"
