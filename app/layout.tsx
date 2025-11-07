@@ -4,7 +4,16 @@ import '@/app/globals.css';
 export const metadata: Metadata = {
   title: 'Health Coaching: Pre-Consultation Form',
   description: 'Health coaching pre-consultation form to gather your health journey details',
-  icons: '/icons/favicon.ico',
+  icons: {
+    icon: [
+      { url: '/icons/favicon.ico', sizes: 'any' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/icons/apple-touch-icon.png',
+    shortcut: '/icons/favicon.ico',
+  },
+  manifest: '/icons/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -14,6 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+      </head>
       <body className="bg-white">
         {children}
       </body>
