@@ -59,7 +59,7 @@ export const Page4Form: React.FC<Page4FormProps> = ({
         label="Is there anything else you want me to know before our consultation?"
         placeholder="Additional notes or questions..."
         value={data.additionalNotes || ''}
-        onChange={(e) => onChange('additionalNotes', e.target.value)}
+        onChange={(value) => onChange('additionalNotes', value)}
         onBlur={() => onBlur('additionalNotes')}
         error={errors.additionalNotes}
         rows={4}
