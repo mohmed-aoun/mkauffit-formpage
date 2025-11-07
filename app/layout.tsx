@@ -4,7 +4,7 @@ import '@/app/globals.css';
 export const metadata: Metadata = {
   title: 'Health Coaching: Pre-Consultation Form',
   description: 'Health coaching pre-consultation form to gather your health journey details',
-  icons: '/icons/favicon.ico',
+  icons: '/public/icons/favicon.ico',
 };
 
 export default function RootLayout({
