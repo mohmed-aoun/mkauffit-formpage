@@ -53,7 +53,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="Full Name"
           placeholder="e.g., John Smith"
           value={data.fullName || ''}
-          onChange={(e) => onChange('fullName', e.target.value)}
+          onChange={(value) => onChange('fullName', value)}
           onBlur={() => onBlur('fullName')}
           error={errors.fullName}
           required
@@ -64,7 +64,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           placeholder="e.g., john@example.com"
           type="email"
           value={data.email || ''}
-          onChange={(e) => onChange('email', e.target.value)}
+          onChange={(value) => onChange('email', value)}
           onBlur={() => onBlur('email')}
           error={errors.email}
           required
@@ -75,7 +75,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           placeholder="e.g., 28"
           type="number"
           value={data.age ? String(data.age) : ''}
-          onChange={(e) => onChange('age', e.target.value ? parseInt(e.target.value) : '')}
+          onChange={(value) => onChange('age', value ? parseInt(value) : '')}
           onBlur={() => onBlur('age')}
           error={errors.age}
           required
@@ -85,7 +85,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="Height"
           placeholder={'e.g., 5\'10" or 178cm'}
           value={data.height || ''}
-          onChange={(e) => onChange('height', e.target.value)}
+          onChange={(value) => onChange('height', value)}
           onBlur={() => onBlur('height')}
           error={errors.height}
           required
@@ -95,7 +95,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="Current Weight"
           placeholder="e.g., 180 lbs or 82 kg"
           value={data.currentWeight || ''}
-          onChange={(e) => onChange('currentWeight', e.target.value)}
+          onChange={(value) => onChange('currentWeight', value)}
           onBlur={() => onBlur('currentWeight')}
           error={errors.currentWeight}
           required
@@ -115,7 +115,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           label="How do you hear about me?"
           placeholder="e.g., Instagram, friend referral, Google search, etc."
           value={data.howDidYouHear || ''}
-          onChange={(e) => onChange('howDidYouHear', e.target.value)}
+          onChange={(value) => onChange('howDidYouHear', value)}
           onBlur={() => onBlur('howDidYouHear')}
         />
       </div>
