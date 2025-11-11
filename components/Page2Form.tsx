@@ -13,6 +13,7 @@ import { safeNumber } from '@/utils/numberUtils';
 interface Page2FormProps {
   data: Partial<FormData>;
   errors: Record<string, string>;
+  hasAttemptedSubmit: boolean;
   onChange: (field: string, value: any) => void;
   onBlur: (field: string) => void;
 }
@@ -20,6 +21,7 @@ interface Page2FormProps {
 export const Page2Form: React.FC<Page2FormProps> = ({
   data,
   errors,
+  hasAttemptedSubmit,
   onChange,
   onBlur,
 }) => {
@@ -52,6 +54,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.throwsYouOffTrack}
           required
         />
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <RadioGroup
           label="What kind of support do you respond best to?"
@@ -66,6 +71,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.supportStyle}
           required
         />
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <RadioGroup
           label="Are you currently working with any coach/trainer?"
@@ -79,6 +87,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           required
           layout="horizontal"
         />
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <RadioGroup
           label="Do you have access to a gym or home exercise equipment?"
@@ -92,6 +103,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.gymAccess}
           required
         />
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
       </div>
 
       {/* Section 2: Current Workout Details */}
@@ -113,7 +127,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.exerciseDaysPerWeek}
           required
         />
-
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextInput
           label="What type of workouts?"
@@ -124,6 +140,9 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.workoutTypes}
           required
         />
+        {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
       </div>
     </div>
   );
