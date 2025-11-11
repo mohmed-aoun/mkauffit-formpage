@@ -37,6 +37,7 @@ interface Page1FormProps {
 export const Page1Form: React.FC<Page1FormProps> = ({
   data,
   errors,
+  hasAttemptedSubmit,
   onChange,
   onBlur,
 }) => {
