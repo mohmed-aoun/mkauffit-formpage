@@ -42,8 +42,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stepsTracking}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.stepsTracking && (
+          <p className="text-red-600 text-sm mt-1">{errors.stepsTracking}</p>
       )}
 
       <TextArea
@@ -56,8 +56,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.medicalConditions && (
+          <p className="text-red-600 text-sm mt-1">{errors.medicalConditions}</p>
       )}
 
       <TextArea
@@ -70,8 +70,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.typicalEating && (
+          <p className="text-red-600 text-sm mt-1">{errors.typicalEating}</p>
       )}
 
       <RadioGroup
@@ -86,8 +86,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.openToTrackingFood}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.openToTrackingFood && (
+          <p className="text-red-600 text-sm mt-1">{errors.openToTrackingFood}</p>
       )}
 
       <RadioGroup
@@ -102,8 +102,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.currentlyTrackingFood}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.currentlyTrackingFood && (
+          <p className="text-red-600 text-sm mt-1">{errors.currentlyTrackingFood}</p>
       )}
 
       <TextArea
@@ -116,8 +116,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.dietaryNeeds && (
+          <p className="text-red-600 text-sm mt-1">{errors.dietaryNeeds}</p>
       )}
 
       <RadioGroup
@@ -133,8 +133,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.eatingOutFrequency}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.eatingOutFrequency && (
+          <p className="text-red-600 text-sm mt-1">{errors.eatingOutFrequency}</p>
       )}
 
       <RadioGroup
@@ -150,8 +150,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.waterIntake}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.waterIntake && (
+          <p className="text-red-600 text-sm mt-1">{errors.waterIntake}</p>
       )}
 
       <RadioGroup
@@ -168,8 +168,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.sleepHours}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.sleepHours && (
+          <p className="text-red-600 text-sm mt-1">{errors.sleepHours}</p>
       )}
 
       <RadioGroup
@@ -184,8 +184,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.sleepQuality}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.sleepQuality && (
+          <p className="text-red-600 text-sm mt-1">{errors.sleepQuality}</p>
       )}
 
       <SliderInput
@@ -199,8 +199,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stressLevel}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.stressLevel && (
+          <p className="text-red-600 text-sm mt-1">{errors.stressLevel}</p>
       )}
       
       <RadioGroup
@@ -215,8 +215,8 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.travelSchedule}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.travelSchedule && (
+          <p className="text-red-600 text-sm mt-1">{errors.travelSchedule}</p>
       )}
     </div>
   );
