@@ -13,6 +13,7 @@ import { safeNumber } from '@/utils/numberUtils';
 interface Page3FormProps {
   data: Partial<FormData>;
   errors: Partial<Record<keyof FormData, string>>;
+  hasAttemptedSubmit: boolean;
   onChange: (field: keyof FormData, value: any) => void;
   onBlur: (field: keyof FormData) => void;
 }
@@ -20,6 +21,7 @@ interface Page3FormProps {
 export const Page3Form: React.FC<Page3FormProps> = ({
   data,
   errors,
+  hasAttemptedSubmit,
   onChange,
   onBlur,
 }) => {
@@ -40,6 +42,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stepsTracking}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <TextArea
         label="Any current or past injuries / pain / medical conditions I should know about?"
@@ -51,6 +56,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <TextArea
         label="Share what a typical day of eating looks like for you"
@@ -62,6 +70,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="Are you open to tracking your food / calories / macros later on?"
@@ -75,6 +86,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.openToTrackingFood}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="Do you currently track your food / calories / macros?"
@@ -88,6 +102,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.currentlyTrackingFood}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <TextArea
         label="Any food preferences, dislikes, or dietary needs I should know about?"
@@ -99,6 +116,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         required
         rows={4}
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="How many days per week do you eat out or order delivery food?"
@@ -113,6 +133,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.eatingOutFrequency}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="How much water do you drink daily (approximation)?"
@@ -127,6 +150,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.waterIntake}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="On average, how many hours of sleep do you get per night?"
@@ -142,6 +168,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.sleepHours}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <RadioGroup
         label="What's your sleep quality like?"
@@ -155,6 +184,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.sleepQuality}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
 
       <SliderInput
         label="What's your stress level like on a daily basis?"
@@ -167,9 +199,10 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.stressLevel}
         required
       />
-
-
-
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
+      
       <RadioGroup
         label="Do you travel often or live on an inconsistent schedule?"
         options={[
@@ -182,6 +215,9 @@ export const Page3Form: React.FC<Page3FormProps> = ({
         error={errors.travelSchedule}
         required
       />
+      {hasAttemptedSubmit && errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      )}
     </div>
   );
 };
