@@ -90,7 +90,7 @@ export const FormContainer: React.FC = () => {
         return (
           <Page1Form
             data={data}
-            errors={errors}
+            errors={pageErrors}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -99,7 +99,7 @@ export const FormContainer: React.FC = () => {
         return (
           <Page2Form
             data={data}
-            errors={errors}
+            errors={pageErrors}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -108,7 +108,7 @@ export const FormContainer: React.FC = () => {
         return (
           <Page3Form
             data={data}
-            errors={errors}
+            errors={pageErrors}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -117,7 +117,7 @@ export const FormContainer: React.FC = () => {
         return (
           <Page4Form
             data={data}
-            errors={errors}
+            errors={pageErrors}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -164,20 +164,6 @@ export const FormContainer: React.FC = () => {
         {currentPage < TOTAL_PAGES && currentPage === 1 && (
           <div className="mb-6 text-sm text-red-500">
             * Indicates required field
-          </div>
-        )}
-
-        {/* Error Summary */}
-        {showErrorSummary && !canAdvance && currentPage < TOTAL_PAGES && (
-          <div className="bg-red-50 border border-red-200 p-4 mb-6 rounded-md">
-            <p className="text-sm font-medium text-red-700">
-              Please fix the errors below before continuing:
-            </p>
-            <ul className="mt-2 text-sm text-red-600 list-disc list-inside">
-              {Object.values(pageErrors).map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
           </div>
         )}
 
