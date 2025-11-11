@@ -28,40 +28,47 @@ export const FormContainer: React.FC = () => {
 
   const [pageErrors, setPageErrors] = useState<Record<string, string>>({});
   const [showErrorSummary, setShowErrorSummary] = useState(false);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
   const TOTAL_PAGES = 5;
 
   // Calculate current page errors
   useEffect(() => {
-    if (currentPage < TOTAL_PAGES) {
-      const errors = validatePage(currentPage, data as Partial<FormData>);
-      setPageErrors(errors);
-    }
-  }, [data, currentPage]);
+    if (!hasAttemptedSubmit || currentPage >= TOTAL_PAGES) return;
+
+    const errors = validatePage(currentPage, data as Partial<FormData>);
+    setPageErrors(errors);
+  }, [data, currentPage, hasAttemptedSubmit]);
 
   const canAdvance = Object.keys(pageErrors).length === 0;
 
   const handleNext = async () => {
-    if (!canAdvance) {
+    setHasAttemptedSubmit(true); // mark that user tried to move on
+  
+    const errors = validatePage(currentPage, data as Partial<FormData>);
+    setPageErrors(errors);
+  
+    if (Object.keys(errors).length > 0) {
       setShowErrorSummary(true);
       return;
     }
-
+  
     if (currentPage === 4) {
-      // Submit form on final next
       try {
         await submitForm(data as FormData);
         setCurrentPage(5);
       } catch {
-        // Error is handled by the hook
+        // handled by hook
       }
     } else {
       setCurrentPage(currentPage + 1);
       setShowErrorSummary(false);
       resetErrors();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      setHasAttemptedSubmit(false); // reset for next page
     }
   };
+
 
   const handleBack = () => {
     if (currentPage > 1) {
@@ -91,6 +98,7 @@ export const FormContainer: React.FC = () => {
           <Page1Form
             data={data}
             errors={pageErrors}
+            hasAttemptedSubmit={hasAttemptedSubmit}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -100,6 +108,7 @@ export const FormContainer: React.FC = () => {
           <Page2Form
             data={data}
             errors={pageErrors}
+            hasAttemptedSubmit={hasAttemptedSubmit}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -109,6 +118,7 @@ export const FormContainer: React.FC = () => {
           <Page3Form
             data={data}
             errors={pageErrors}
+            hasAttemptedSubmit={hasAttemptedSubmit}
             onChange={updateField}
             onBlur={blurField}
           />
@@ -118,6 +128,7 @@ export const FormContainer: React.FC = () => {
           <Page4Form
             data={data}
             errors={pageErrors}
+            hasAttemptedSubmit={hasAttemptedSubmit}
             onChange={updateField}
             onBlur={blurField}
           />
