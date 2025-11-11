@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Health Coaching: Pre-Consultation Form',
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white">{children}</body>
+      <Footer />
     </html>
   );
 }
