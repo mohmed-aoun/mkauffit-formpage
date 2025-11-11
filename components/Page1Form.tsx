@@ -60,8 +60,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.fullName}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.fullName && (
+          <p className="text-red-600 text-sm mt-1">{errors.fullName}</p>
         )}
 
         <TextInput
@@ -74,8 +74,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.email}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.email && (
+          <p className="text-red-600 text-sm mt-1">{errors.email}</p>
         )}
 
         <TextInput
@@ -88,8 +88,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.age}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.age && (
+          <p className="text-red-600 text-sm mt-1">{errors.age}</p>
         )}
 
         <TextInput
@@ -101,8 +101,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.height}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.height && (
+          <p className="text-red-600 text-sm mt-1">{errors.height}</p>
         )}
 
         <TextInput
@@ -114,8 +114,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.currentWeight}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.currentWeight && (
+          <p className="text-red-600 text-sm mt-1">{errors.currentWeight}</p>
         )}
 
         <SelectDropdown
@@ -127,8 +127,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.timeZone}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.timeZone && (
+          <p className="text-red-600 text-sm mt-1">{errors.timeZone}</p>
         )}
 
         <TextInput
@@ -138,8 +138,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           onChange={(value) => onChange('howDidYouHear', value)}
           onBlur={() => onBlur('howDidYouHear')}
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.howDidYouHear && (
+          <p className="text-red-600 text-sm mt-1">{errors.howDidYouHear}</p>
         )}
       </div>
 
@@ -161,8 +161,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.mainGoal && (
+          <p className="text-red-600 text-sm mt-1">{errors.mainGoal}</p>
         )}
 
         <TextArea
@@ -175,8 +175,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.goalMotivation && (
+          <p className="text-red-600 text-sm mt-1">{errors.goalMotivation}</p>
         )}
 
         <RadioGroup
@@ -191,8 +191,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           layout="horizontal"
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.triedBefore && (
+          <p className="text-red-600 text-sm mt-1">{errors.triedBefore}</p>
         )}
 
         <TextArea
@@ -205,8 +205,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.whatHeldYouBack && (
+          <p className="text-red-600 text-sm mt-1">{errors.whatHeldYouBack}</p>
         )}
 
         <TextArea
@@ -219,8 +219,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.feeling3to6Months && (
+          <p className="text-red-600 text-sm mt-1">{errors.feeling3to6Months}</p>
         )}
 
         <SliderInput
@@ -234,8 +234,8 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.commitmentLevel}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.commitmentLevel && (
+          <p className="text-red-600 text-sm mt-1">{errors.commitmentLevel}</p>
         )}
 
       </div>
