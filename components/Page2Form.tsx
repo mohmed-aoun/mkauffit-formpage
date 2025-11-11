@@ -54,8 +54,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.throwsYouOffTrack}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.throwsYouOffTrack && (
+          <p className="text-red-600 text-sm mt-1">{errors.throwsYouOffTrack}</p>
         )}
 
         <RadioGroup
@@ -71,8 +71,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.supportStyle}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.supportStyle && (
+          <p className="text-red-600 text-sm mt-1">{errors.supportStyle}</p>
         )}
 
         <RadioGroup
@@ -87,8 +87,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           required
           layout="horizontal"
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.workingWithCoach && (
+          <p className="text-red-600 text-sm mt-1">{errors.workingWithCoach}</p>
         )}
 
         <RadioGroup
@@ -103,8 +103,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.gymAccess}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.gymAccess && (
+          <p className="text-red-600 text-sm mt-1">{errors.gymAccess}</p>
         )}
       </div>
 
@@ -127,8 +127,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.exerciseDaysPerWeek}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.exerciseDaysPerWeek && (
+          <p className="text-red-600 text-sm mt-1">{errors.exerciseDaysPerWeek}</p>
         )}
 
         <TextInput
@@ -140,8 +140,8 @@ export const Page2Form: React.FC<Page2FormProps> = ({
           error={errors.workoutTypes}
           required
         />
-        {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        {hasAttemptedSubmit && errors.workoutTypes && (
+          <p className="text-red-600 text-sm mt-1">{errors.workoutTypes}</p>
         )}
       </div>
     </div>
