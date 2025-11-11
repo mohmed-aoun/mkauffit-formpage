@@ -42,8 +42,8 @@ export const Page4Form: React.FC<Page4FormProps> = ({
         error={errors.coachingType}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.coachingType && (
+          <p className="text-red-600 text-sm mt-1">{errors.coachingType}</p>
       )}
 
       <RadioGroup
@@ -59,8 +59,8 @@ export const Page4Form: React.FC<Page4FormProps> = ({
         error={errors.startTimeline}
         required
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.startTimeline && (
+          <p className="text-red-600 text-sm mt-1">{errors.startTimeline}</p>
       )}
 
       <TextArea
@@ -72,8 +72,8 @@ export const Page4Form: React.FC<Page4FormProps> = ({
         error={errors.additionalNotes}
         rows={4}
       />
-      {hasAttemptedSubmit && errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+      {hasAttemptedSubmit && errors.additionalNotes && (
+          <p className="text-red-600 text-sm mt-1">{errors.additionalNotes}</p>
       )}
     </div>
   );
