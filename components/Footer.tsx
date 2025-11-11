@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-gray-100 py-3 border-t border-gray-200 z-50">
+    <footer className="left-0 w-full bg-gray-100 py-3 border-t border-gray-200 z-50">
       <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-800">
         <Link
           href="https://instagram.com/mkauffit"
