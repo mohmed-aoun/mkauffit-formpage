@@ -58,6 +58,10 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.fullName}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
+
 
         <TextInput
           label="Email"
@@ -69,6 +73,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.email}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextInput
           label="Age"
@@ -80,6 +87,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.age}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextInput
           label="Height"
@@ -90,6 +100,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.height}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextInput
           label="Current Weight"
@@ -100,6 +113,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.currentWeight}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <SelectDropdown
           label="Your Current Time Zone"
@@ -110,6 +126,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.timeZone}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextInput
           label="How do you hear about me?"
@@ -118,6 +137,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           onChange={(value) => onChange('howDidYouHear', value)}
           onBlur={() => onBlur('howDidYouHear')}
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
       </div>
 
       {/* Section 2: Goals & Motivation */}
@@ -138,6 +160,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextArea
           label="Why do you want to achieve this goal? What would change in your life if you achieved it?"
@@ -149,6 +174,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <RadioGroup
           label="Have you tried to reach this goal before?"
@@ -162,6 +190,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           layout="horizontal"
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextArea
           label="What got in the way/what held you back?"
@@ -173,6 +204,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <TextArea
           label="If you don't make a change now, how will you feel 3–6 months from today?"
@@ -184,6 +218,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
         <SliderInput
           label="On a scale of 1–10, how committed are you to making a real change right now?"
@@ -196,6 +233,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.commitmentLevel}
           required
         />
+        {errors.name && (
+          <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+        )}
 
       </div>
     </div>
