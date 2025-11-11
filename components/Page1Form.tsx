@@ -29,6 +29,7 @@ const TIMEZONE_OPTIONS = [
 interface Page1FormProps {
   data: Partial<FormData>;
   errors: Record<string, string>;
+  hasAttemptedSubmit: boolean;
   onChange: (field: string, value: any) => void;
   onBlur: (field: string) => void;
 }
@@ -58,10 +59,9 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.fullName}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
-
 
         <TextInput
           label="Email"
@@ -73,7 +73,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.email}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -87,7 +87,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.age}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -100,7 +100,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.height}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -113,7 +113,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.currentWeight}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -126,7 +126,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.timeZone}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -137,7 +137,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           onChange={(value) => onChange('howDidYouHear', value)}
           onBlur={() => onBlur('howDidYouHear')}
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
       </div>
@@ -160,7 +160,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -174,7 +174,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -190,7 +190,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           layout="horizontal"
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -204,7 +204,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -218,7 +218,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           required
           rows={4}
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
@@ -233,7 +233,7 @@ export const Page1Form: React.FC<Page1FormProps> = ({
           error={errors.commitmentLevel}
           required
         />
-        {errors.name && (
+        {hasAttemptedSubmit && errors.name && (
           <p className="text-red-600 text-sm mt-1">{errors.name}</p>
         )}
 
