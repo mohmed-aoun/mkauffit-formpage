@@ -167,6 +167,8 @@ export const FormContainer: React.FC = () => {
             </p>
           </div>
         </div>
+        {/* Gray separator line */}
+        <hr className="border-t border-gray-200" />
       </header>
 
 
