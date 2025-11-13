@@ -16,48 +16,24 @@ jobs:
     name: Semgrep Static Analysis
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run Semgrep & upload results
+      - uses: actions/checkout@v4
+      - name: Run Semgrep & upload
         uses: returntocorp/semgrep-action@v1
         with:
           config: p/security-audit
-          upload: true   # ✅ auto-upload to GitHub Security tab
+          upload: true
 
   snyk:
     name: Snyk Dependency Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Check if SNYK_TOKEN exists
-        id: token_check
-        run: |
-          if [[ -z "${{ secrets.SNYK_TOKEN }}" ]]; then
-            echo "exists=false" >> $GITHUB_OUTPUT
-          else
-            echo "exists=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Install Snyk
-        if: steps.token_check.outputs.exists == 'true'
-        run: npm install -g snyk
-
-      - name: Authenticate Snyk
-        if: steps.token_check.outputs.exists == 'true'
-        run: snyk auth "${{ secrets.SNYK_TOKEN }}"
-
-      - name: Run Snyk Test (SARIF)
-        if: steps.token_check.outputs.exists == 'true'
-        run: snyk test --sarif-file=snyk.sarif || true
-
-      - name: Upload Snyk SARIF
-        if: steps.token_check.outputs.exists == 'true'
-        uses: github/codeql-action/upload-sarif@v3
+      - uses: actions/checkout@v4
+      - name: Run Snyk Scan
+        uses: snyk/actions/node@v3
         with:
-          sarif_file: snyk.sarif
+          args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   codeql:
     name: CodeQL Scan
@@ -70,16 +46,12 @@ jobs:
       matrix:
         language: ['javascript']
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-
       - name: Build
         run: echo "Static site — no build required"
-
       - name: Analyze
         uses: github/codeql-action/analyze@v3
