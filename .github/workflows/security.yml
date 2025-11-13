@@ -1,0 +1,41 @@
+name: 🔒 Lean Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0' # optional: runs once a week on Sunday midnight UTC
+  workflow_dispatch:
+
+jobs:
+  semgrep:
+    name: Static Code Scan (Semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/ci  # lightweight rule set for web apps
+          auditOn: push
+          generateSarif: true
+      - name: Upload SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+
+  snyk:
+    name: Dependency Vulnerability Scan (Snyk)
+    if: env.SNYK_TOKEN != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@v2
+        with:
+          version: 'latest'
+      - name: Run Snyk to check for vulnerabilities
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test --severity-threshold=medium
