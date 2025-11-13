@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Snyk Scan
-        uses: snyk/actions/node@v3
+        uses: snyk/actions/node@master
         with:
           args: test
         env:
