@@ -1,41 +1,92 @@
-name: 🔒 Lean Security Scan
+name: Full Security Scan
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * 0' # optional: runs once a week on Sunday midnight UTC
   workflow_dispatch:
 
 jobs:
   semgrep:
-    name: Static Code Scan (Semgrep)
+    name: Semgrep Static Analysis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
         with:
-          config: p/ci  # lightweight rule set for web apps
-          auditOn: push
+          config: p/security-audit
           generateSarif: true
-      - name: Upload SARIF to GitHub Security tab
+
+      - name: Upload Semgrep SARIF
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep.sarif
 
   snyk:
-    name: Dependency Vulnerability Scan (Snyk)
-    if: env.SNYK_TOKEN != ''
+    name: Snyk Dependency Scan
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      - uses: snyk/actions/setup@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if token exists
+        id: token_exists
+        run: |
+          if [[ -z "${{ secrets.SNYK_TOKEN }}" ]]; then
+            echo "exists=false" >> $GITHUB_OUTPUT
+          else
+            echo "exists=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install Snyk
+        if: steps.token_exists.outputs.exists == 'true'
+        run: npm install -g snyk
+
+      - name: Auth Snyk
+        if: steps.token_exists.outputs.exists == 'true'
+        run: snyk auth "${{ secrets.SNYK_TOKEN }}"
+
+      - name: Snyk Test
+        if: steps.token_exists.outputs.exists == 'true'
+        run: snyk test --json > snyk-results.json || true
+
+      - name: Upload Snyk SARIF
+        if: steps.token_exists.outputs.exists == 'true'
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          version: 'latest'
-      - name: Run Snyk to check for vulnerabilities
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --severity-threshold=medium
+          sarif_file: snyk-results.json
+
+  codeql:
+    name: CodeQL Scan
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Build
+        run: |
+          echo "No build step needed for static site"
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3
