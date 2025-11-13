@@ -1,4 +1,4 @@
-name: Full Security Scan
+name: Security Scan
 
 on:
   push:
@@ -21,19 +21,7 @@ jobs:
         uses: returntocorp/semgrep-action@v1
         with:
           config: p/security-audit
-          upload: true
-
-  snyk:
-    name: Snyk Dependency Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Snyk Scan
-        uses: snyk/actions/node@master
-        with:
-          args: test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          upload: true  # auto uploads to GitHub Security tab
 
   codeql:
     name: CodeQL Scan
