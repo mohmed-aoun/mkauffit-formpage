@@ -7,6 +7,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   semgrep:
     name: Semgrep Static Analysis
@@ -29,12 +33,11 @@ jobs:
   snyk:
     name: Snyk Dependency Scan
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check if token exists
+      - name: Check if Snyk Token Exists
         id: token_exists
         run: |
           if [[ -z "${{ secrets.SNYK_TOKEN }}" ]]; then
@@ -47,26 +50,25 @@ jobs:
         if: steps.token_exists.outputs.exists == 'true'
         run: npm install -g snyk
 
-      - name: Auth Snyk
+      - name: Authenticate Snyk
         if: steps.token_exists.outputs.exists == 'true'
         run: snyk auth "${{ secrets.SNYK_TOKEN }}"
 
-      - name: Snyk Test
+      - name: Snyk Test (SARIF output)
         if: steps.token_exists.outputs.exists == 'true'
-        run: snyk test --json > snyk-results.json || true
+        run: snyk test --sarif-file=snyk.sarif || true
 
       - name: Upload Snyk SARIF
         if: steps.token_exists.outputs.exists == 'true'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: snyk-results.json
+          sarif_file: snyk.sarif
 
   codeql:
     name: CodeQL Scan
     runs-on: ubuntu-latest
 
     permissions:
-      actions: read
       contents: read
       security-events: write
 
@@ -85,8 +87,7 @@ jobs:
           languages: ${{ matrix.language }}
 
       - name: Build
-        run: |
-          echo "No build step needed for static site"
+        run: echo "Static site — no build required"
 
       - name: Analyze
         uses: github/codeql-action/analyze@v3
