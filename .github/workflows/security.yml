@@ -16,29 +16,24 @@ jobs:
     name: Semgrep Static Analysis
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Semgrep
+      - name: Run Semgrep & upload results
         uses: returntocorp/semgrep-action@v1
         with:
           config: p/security-audit
-          generateSarif: true
-
-      - name: Upload Semgrep SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: semgrep.sarif
+          upload: true   # ✅ auto-upload to GitHub Security tab
 
   snyk:
     name: Snyk Dependency Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Check if Snyk Token Exists
-        id: token_exists
+      - name: Check if SNYK_TOKEN exists
+        id: token_check
         run: |
           if [[ -z "${{ secrets.SNYK_TOKEN }}" ]]; then
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -47,19 +42,19 @@ jobs:
           fi
 
       - name: Install Snyk
-        if: steps.token_exists.outputs.exists == 'true'
+        if: steps.token_check.outputs.exists == 'true'
         run: npm install -g snyk
 
       - name: Authenticate Snyk
-        if: steps.token_exists.outputs.exists == 'true'
+        if: steps.token_check.outputs.exists == 'true'
         run: snyk auth "${{ secrets.SNYK_TOKEN }}"
 
-      - name: Snyk Test (SARIF output)
-        if: steps.token_exists.outputs.exists == 'true'
+      - name: Run Snyk Test (SARIF)
+        if: steps.token_check.outputs.exists == 'true'
         run: snyk test --sarif-file=snyk.sarif || true
 
       - name: Upload Snyk SARIF
-        if: steps.token_exists.outputs.exists == 'true'
+        if: steps.token_check.outputs.exists == 'true'
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
@@ -67,18 +62,15 @@ jobs:
   codeql:
     name: CodeQL Scan
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       security-events: write
-
     strategy:
       fail-fast: false
       matrix:
         language: ['javascript']
-
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Initialize CodeQL
